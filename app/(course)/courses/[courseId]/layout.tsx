@@ -6,10 +6,12 @@ import { redirect } from "next/navigation";
 import CourseSideBar from "@/components/layout/CourseSideBar";
 import Topbar from "@/components/layout/Topbar";
 
+
 interface LayoutProps {
   children: React.ReactNode;
   params: {courseId: string }; 
 }
+
 
 export default async function CourseDetailsLayout({ children, params }: LayoutProps) {
   const session = await auth();
