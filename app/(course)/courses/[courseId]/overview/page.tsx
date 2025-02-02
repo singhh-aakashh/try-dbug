@@ -1,14 +1,25 @@
-import { clerkClient } from "@clerk/clerk-sdk-node"; // Ensure correct import
+import { clerkClient } from "@clerk/clerk-sdk-node";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import ReadText from "@/components/custom/ReadText";
 import SectionMenu from "@/components/layout/SectionMenu";
 
-const CourseOverview = async ({ params }: { params: { courseId: string } }) => {
+interface CourseOverviewProps {
+  params: {
+    courseId: string;
+  };
+}
+
+const CourseOverview = async ({ params }: CourseOverviewProps) => {
+  const { courseId } =await params;
+  if(!courseId){
+    redirect("/courses")
+  }
+
   // Fetch course with related sections
   const course = await db.course.findUnique({
-    where: { id: params.courseId },
+    where: { id: courseId },
     include: { sections: { where: { isPublished: true } } },
   });
 

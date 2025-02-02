@@ -1,11 +1,15 @@
 "use client";
+import dynamic from "next/dynamic";
 
-import { UserButton, useAuth } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { Menu, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+
+
+const UserButton = dynamic(() => import("@clerk/nextjs").then(mod => mod.UserButton), { ssr: false });
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +22,7 @@ import {
 } from "@/components/ui/sheet";
 
 const Topbar = () => {
+  
   const { isSignedIn } = useAuth();
   const router = useRouter();
   const pathName = usePathname();

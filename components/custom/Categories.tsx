@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import { Category } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface CategoriesProps {
   categories: Category[];
@@ -17,7 +18,7 @@ const Categories = ({ categories, selectedCategory }: CategoriesProps) => {
   };
 
   return (
-    <div className="flex flex-wrap px-4 gap-7 justify-center my-10">
+    <div className="flex flex-wrap px-4 gap-7 justify-center my-10" suppressHydrationWarning={true}>
       <Button
         variant={selectedCategory === null ? "default" : "outline"}
         onClick={() => onClick(null)}
