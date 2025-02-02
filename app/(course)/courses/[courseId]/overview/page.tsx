@@ -7,7 +7,7 @@ import SectionMenu from "@/components/layout/SectionMenu";
 
 interface CourseOverviewProps {
   params: {
-    courseId: string;
+    courseId: Promise<any>;
   };
 }
 

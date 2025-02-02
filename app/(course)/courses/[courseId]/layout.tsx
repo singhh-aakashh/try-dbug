@@ -9,7 +9,7 @@ import Topbar from "@/components/layout/Topbar";
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: {courseId: string }; 
+  params: {courseId: Promise<any> }; 
 }
 
 
